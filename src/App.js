@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// import {useState} from 'react';
+// import IncrementButton from './incrementButton.js';
+// import SentMessage from './sentMessage.js';
+// import ObjectInState from './objectInState.js';
+// import Toolbar from './eventButton.js';
+// import {DisableButton} from './reactingToInput.js';
+// import ContactList from './contactList.js';
+// import AnalogWatch from './analogwatch.js';
+// import GuessTheNumber from './guessTheNumber.js';
+
+import Tictac from "./tictac";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return(
+<>
+{/* <IncrementButton />
+<SentMessage />
+<ObjectInState/>
+<Toolbar />
+<DisableButton/>
+<ContactList/> */}
+{/* <GuessTheNumber/> */}
+{/* <AnalogWatch/> */}
+<Tictac/>
+</>
   );
 }
 
