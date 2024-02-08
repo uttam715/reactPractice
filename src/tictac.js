@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 export default function Tictac() {
@@ -17,11 +17,35 @@ export default function Tictac() {
   const [decision, setdecision] = useState(false);
   const [decision2, setdecision2] = useState(false);
 
+  useEffect(() => {
+    const isWinning = setDecision();
+    if (isWinning) {
+      setdecision(true);
+      return;
+    } else {
+      if (input === "0") {
+        setInput("X");
+      } else if (input === "X") setInput("0");
+    }
+
+    if (
+      targetValue.c !== "" &&
+      targetValue.a !== "" &&
+      targetValue.b !== "" &&
+      targetValue.c !== "" &&
+      targetValue.d !== "" &&
+      targetValue.f !== "" &&
+      targetValue.g !== "" &&
+      targetValue.h !== "" &&
+      targetValue.i !== ""
+    )
+      setdecision2(true);
+  }, [targetValue]);
+
   function handleOnClick(e) {
     const clickedTarget = e.target.dataset.name;
 
-    if (e.target.innerText === "" && decision===false) {
-      
+    if (e.target.innerText === "" && decision === false) {
       switch (clickedTarget) {
         case "a":
           setTargetValue({
@@ -80,82 +104,67 @@ export default function Tictac() {
       }
     }
 
+    // setDecision();
+  }
+
+  function setDecision() {
     if (
       targetValue.a !== "" &&
       targetValue.a === targetValue.b &&
       targetValue.b === targetValue.c
     ) {
-      setdecision(true);
-    //   setInput(e.target.innerText);
+      return true;
+      //   setInput(e.target.innerText);
     }
 
     if (
       targetValue.d !== "" &&
       targetValue.d === targetValue.e &&
       targetValue.e === targetValue.f
-    ) 
-      setdecision(true);
-    
+    )
+      return true;
+
     if (
       targetValue.g !== "" &&
       targetValue.g === targetValue.h &&
       targetValue.h === targetValue.i
     )
-      setdecision(true);
+      return true;
     if (
       targetValue.a !== "" &&
       targetValue.a === targetValue.d &&
       targetValue.d === targetValue.g
     )
-      setdecision(true);
+      return true;
 
     if (
       targetValue.b !== "" &&
       targetValue.b === targetValue.e &&
       targetValue.e === targetValue.h
     )
-      setdecision(true);
+      return true;
 
     if (
       targetValue.c !== "" &&
       targetValue.c === targetValue.f &&
       targetValue.f === targetValue.i
     )
-      setdecision(true);
+      return true;
 
     if (
       targetValue.a !== "" &&
       targetValue.a === targetValue.e &&
       targetValue.e === targetValue.i
     )
-      setdecision(true);
+      return true;
 
     if (
       targetValue.c !== "" &&
       targetValue.c === targetValue.e &&
       targetValue.e === targetValue.g
     )
-      setdecision(true);
-      if (
-        targetValue.c !== "" &&
-        targetValue.a !== "" &&
-        targetValue.b !== "" &&
-        targetValue.c !== "" &&
-        targetValue.d !== "" &&
-        targetValue.f !== "" &&
-        targetValue.g !== "" &&
-        targetValue.h !== "" &&
-        targetValue.i !== ""
-      )
-      setdecision2(true);
-      if (input === "0") {
-        setInput("X");
-      } else if (input === "X") setInput("0");
-      else if (input === "") {
-        setInput("0");
-      }
+      return true;
   }
-    
 
   return (
     <div>
@@ -194,7 +203,13 @@ export default function Tictac() {
           </div>
         </div>
       </div>
-      <div>{decision ? <span>{input} won</span> :(decision2?<span>Game Over</span>:null)}</div>
+      <div>
+        {decision ? (
+          <span>{input} won</span>
+        ) : decision2 ? (
+          <span>Game Over</span>
+        ) : null}
+      </div>
     </div>
   );
 }
